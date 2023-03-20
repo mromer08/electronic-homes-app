@@ -34,7 +34,7 @@ CREATE TABLE Clientes.Cliente(
     id SERIAL PRIMARY KEY,
     nombre VARCHAR(50) NOT NULL,
     apellido VARCHAR(50) NOT NULL,
-    nit VARCHAR(10) NOT NULL
+    nit VARCHAR(10) UNIQUE NOT NULL
 );
 
 CREATE TABLE Sucursales.Sucursal(
@@ -46,7 +46,7 @@ CREATE TABLE Sucursales.Sucursal(
 
 CREATE TABLE Empleados.Rol(
     id SERIAL PRIMARY KEY,
-    nombre VARCHAR(50) NOT NULL
+    nombre VARCHAR(50) UNIQUE NOT NULL
 );
 
 CREATE TABLE Empleados.Empleado(
@@ -64,7 +64,7 @@ CREATE TABLE Empleados.Empleado(
 
 CREATE TABLE Usuarios.Usuario(
     id SERIAL PRIMARY KEY,
-    nombre VARCHAR(50) NOT NULL,
+    nombre VARCHAR(50) UNIQUE NOT NULL,
     password VARCHAR(100) NOT NULL,
     id_empleado INTEGER NOT NULL,
     FOREIGN KEY (id_empleado) REFERENCES Empleados.Empleado (id)

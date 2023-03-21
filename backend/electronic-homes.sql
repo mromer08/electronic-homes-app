@@ -118,5 +118,59 @@ GRANT CONNECT ON DATABASE ElectronicHomes TO AdminEH;
 
 -- DANDO PERMISOS, TRABAJANDO EN LA BASE DE DATOS
 -- \c ElectronicHomes
-GRANT USAGE ON ALL SCHEMAS IN DATABASE ElectronicHomes TO AdminEH;
+GRANT ALL ON SCHEMA ControlVentas, ControlInventario, ControlUsuarios, ControlPersonal, ControlSucursales, ControlClientes TO AdminEH;
 
+GRANT SELECT, INSERT, UPDATE, DELETE, REFERENCES ON ALL TABLES IN SCHEMA ControlVentas, ControlInventario, ControlUsuarios, ControlPersonal, ControlSucursales, ControlClientes TO AdminEH;
+CREATE USER SAminEH WITH PASSWORD 'admin1234';
+-- ASIGNANDO ROL A USUARIO CREADO
+GRANT AdminEH TO SAminEH;
+
+-- Cambiar de usuario
+
+/*
+psql -U samineh electronichomes
+*/
+
+-- INSERSIONES DE MARCAS
+insert into ControlInventario.Marca (nombre) values ('Toshiba');
+insert into ControlInventario.Marca (nombre) values ('Samsung');
+insert into ControlInventario.Marca (nombre) values ('Siemens');
+insert into ControlInventario.Marca (nombre) values ('Whirlpool');
+insert into ControlInventario.Marca (nombre) values ('General Electric');
+insert into ControlInventario.Marca (nombre) values ('Sony');
+insert into ControlInventario.Marca (nombre) values ('Panasonic');
+insert into ControlInventario.Marca (nombre) values ('General Electric');
+insert into ControlInventario.Marca (nombre) values ('Bosch');
+insert into ControlInventario.Marca (nombre) values ('LG');
+
+-- INSERSIONES DE PRODUCTOS
+insert into ControlInventario.Producto (nombre, precio, id_marca) values ('Refrigerador', 2212.75, 1);
+insert into ControlInventario.Producto (nombre, precio, id_marca) values ('Lavadora', 2918.5, 2);
+insert into ControlInventario.Producto (nombre, precio, id_marca) values ('Secadora', 4677.38, 1);
+insert into ControlInventario.Producto (nombre, precio, id_marca) values ('Horno', 2263.92, 1);
+insert into ControlInventario.Producto (nombre, precio, id_marca) values ('Microondas', 2723.75, 1);
+insert into ControlInventario.Producto (nombre, precio, id_marca) values ('Estufa', 3900.13, 9);
+insert into ControlInventario.Producto (nombre, precio, id_marca) values ('Campana extractora', 1787.78, 7);
+insert into ControlInventario.Producto (nombre, precio, id_marca) values ('Cafetera de filtro', 3467.41, 5);
+insert into ControlInventario.Producto (nombre, precio, id_marca) values ('Cafetera de capsulas', 802.79, 7);
+insert into ControlInventario.Producto (nombre, precio, id_marca) values ('Tostador', 1590.12, 7);
+insert into ControlInventario.Producto (nombre, precio, id_marca) values ('Licuadora', 4294.94, 7);
+insert into ControlInventario.Producto (nombre, precio, id_marca) values ('Batidora', 2865.53, 9);
+insert into ControlInventario.Producto (nombre, precio, id_marca) values ('Procesador de alimentos', 3659.88, 10);
+insert into ControlInventario.Producto (nombre, precio, id_marca) values ('Freidora electrica', 1744.02, 8);
+insert into ControlInventario.Producto (nombre, precio, id_marca) values ('Plancha de ropa', 4582.72, 7);
+insert into ControlInventario.Producto (nombre, precio, id_marca) values ('Aspiradora', 1939.52, 9);
+insert into ControlInventario.Producto (nombre, precio, id_marca) values ('Ventilador', 1606.0, 8);
+insert into ControlInventario.Producto (nombre, precio, id_marca) values ('Aire acondicionado', 2546.06, 5);
+insert into ControlInventario.Producto (nombre, precio, id_marca) values ('Calentador de agua', 2470.49, 7);
+insert into ControlInventario.Producto (nombre, precio, id_marca) values ('Purificador de aire', 4566.62, 3);
+insert into ControlInventario.Producto (nombre, precio, id_marca) values ('Hervidor electrico', 4701.67, 4);
+insert into ControlInventario.Producto (nombre, precio, id_marca) values ('Molinillo de cafe', 3329.13, 10);
+insert into ControlInventario.Producto (nombre, precio, id_marca) values ('Parrilla electrica', 1041.21, 8);
+insert into ControlInventario.Producto (nombre, precio, id_marca) values ('Arrocera electrica', 2882.17, 9);
+insert into ControlInventario.Producto (nombre, precio, id_marca) values ('Maquina de hacer pan', 508.06, 5);
+insert into ControlInventario.Producto (nombre, precio, id_marca) values ('Deshidratador de alimentos', 2183.01, 2);
+insert into ControlInventario.Producto (nombre, precio, id_marca) values ('Maquina de hacer helados', 1901.7, 7);
+insert into ControlInventario.Producto (nombre, precio, id_marca) values ('Robot de cocina', 4803.27, 8);
+insert into ControlInventario.Producto (nombre, precio, id_marca) values ('Batidora de mano', 4467.71, 8);
+insert into ControlInventario.Producto (nombre, precio, id_marca) values ('Envasadora al vacio', 2975.64, 1);

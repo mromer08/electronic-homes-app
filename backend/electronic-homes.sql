@@ -17,7 +17,7 @@ CREATE TABLE ControlInventario.Marca(
 CREATE TABLE ControlInventario.Producto(
     id SERIAL PRIMARY KEY,
     nombre VARCHAR(50) NOT NULL,
-    precio DECIMAL(8,2) NOT NULL,
+    precio DECIMAL(10,2) NOT NULL,
     id_marca INTEGER NOT NULL,
     FOREIGN KEY (id_marca) REFERENCES ControlInventario.Marca (id)
 );
@@ -54,7 +54,7 @@ CREATE TABLE ControlPersonal.Empleado(
     apellido VARCHAR(50) NOT NULL,
     fecha_contratacion DATE NOT NULL DEFAULT CURRENT_DATE,
     fecha_nacimiento DATE NOT NULL,
-    salario DECIMAL(5,2) NOT NULL DEFAULT 3500.00,
+    salario DECIMAL(10,2) NOT NULL DEFAULT 3500.00,
     id_rol INTEGER NOT NULL,
     id_sucursal INTEGER NOT NULL,
     FOREIGN KEY (id_rol) REFERENCES ControlPersonal.Rol (id),
@@ -176,9 +176,9 @@ insert into ControlInventario.Producto (nombre, precio, id_marca) values ('Batid
 insert into ControlInventario.Producto (nombre, precio, id_marca) values ('Envasadora al vacio', 2975.64, 1);
 
 -- INSERSIONES DE DIRECCIONES
-insert into ControlSucursales.Direccion (direccion, municipio, departamento) values ('6ta Avenida 5-10 Zona 2', "Guatemala", "Guatemala");
-insert into ControlSucursales.Direccion (direccion, municipio, departamento) values ('7ma Calle 7-23 Zona 8', "Flores", "Peten");
-insert into ControlSucursales.Direccion (direccion, municipio, departamento) values ('5ta Avenida 1-21 Zona 3', "Tiquisate", "Escuintla");
+insert into ControlSucursales.Direccion (direccion, municipio, departamento) values ('6ta Avenida 5-10 Zona 2', 'Guatemala', 'Guatemala');
+insert into ControlSucursales.Direccion (direccion, municipio, departamento) values ('7ma Calle 7-23 Zona 8', 'Flores', 'Peten');
+insert into ControlSucursales.Direccion (direccion, municipio, departamento) values ('5ta Avenida 1-21 Zona 3', 'Tiquisate', 'Escuintla');
 
 -- INSERSIONES DE CLIENTES
 insert into ControlClientes.Cliente (nombre, apellido, nit) values ('C', 'F', 0);
@@ -337,5 +337,3 @@ insert into ControlInventario.InventarioSucursal (id_sucursal, id_producto, cant
 insert into ControlInventario.InventarioSucursal (id_sucursal, id_producto, cantidad) values (3, 18, 8);
 insert into ControlInventario.InventarioSucursal (id_sucursal, id_producto, cantidad) values (3, 19, 6);
 insert into ControlInventario.InventarioSucursal (id_sucursal, id_producto, cantidad) values (3, 20, 6);
-
-

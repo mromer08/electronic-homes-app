@@ -21,7 +21,7 @@ import lombok.NoArgsConstructor;
 @Table(name="Producto", schema = "controlinventario")
 public class Producto {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String nombre;
     private Double precio;

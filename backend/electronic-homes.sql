@@ -65,7 +65,7 @@ CREATE TABLE ControlUsuarios.Usuario(
     id SERIAL PRIMARY KEY,
     nombre VARCHAR(50) UNIQUE NOT NULL,
     password VARCHAR(100) NOT NULL,
-    id_empleado INTEGER NOT NULL,
+    id_empleado INTEGER UNIQUE NOT NULL,
     FOREIGN KEY (id_empleado) REFERENCES ControlPersonal.Empleado (id)
 );
 
@@ -79,7 +79,7 @@ CREATE TABLE ControlInventario.Bodega(
 CREATE TABLE ControlInventario.InventarioBodega(
     id SERIAL PRIMARY KEY,
     id_bodega INTEGER NOT NULL,
-    id_producto INTEGER NOT NULL,
+    id_producto INTEGER UNIQUE NOT NULL,
     cantidad INTEGER NOT NULL DEFAULT 1,
     FOREIGN KEY (id_bodega) REFERENCES ControlInventario.Bodega (id),
     FOREIGN KEY (id_producto) REFERENCES ControlInventario.Producto (id)
@@ -88,7 +88,7 @@ CREATE TABLE ControlInventario.InventarioBodega(
 CREATE TABLE ControlInventario.InventarioSucursal(
     id SERIAL PRIMARY KEY,
     id_sucursal INTEGER NOT NULL,
-    id_producto INTEGER NOT NULL,
+    id_producto INTEGER UNIQUE NOT NULL,
     cantidad INTEGER NOT NULL DEFAULT 1,
     FOREIGN KEY (id_sucursal) REFERENCES ControlSucursales.Sucursal (id),
     FOREIGN KEY (id_producto) REFERENCES ControlInventario.Producto (id)

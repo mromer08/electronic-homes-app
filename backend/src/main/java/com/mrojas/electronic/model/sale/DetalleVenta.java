@@ -36,10 +36,10 @@ public class DetalleVenta {
 
     @Transient
     @Builder.Default
-    private Double total = 0.0;
+    private Double subTotal = 0.0;
 
     public Double getTotal(){
-        this.setTotal(this.cantidad*this.producto.getPrecio());
-        return this.total;
+        this.setSubTotal(this.cantidad*this.producto.getPrecio());
+        return this.subTotal;
     }
 }

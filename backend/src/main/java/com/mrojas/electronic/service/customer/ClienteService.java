@@ -19,10 +19,7 @@ public class ClienteService {
     }
 
     public Cliente saveCliente(Cliente cliente){
-        if (!clienteRepository.existsByNit(cliente.getNit())) {
-            return clienteRepository.save(cliente);   
-        }
-        return null;
+        return clienteRepository.save(cliente);
     }
 
     public Optional<Cliente> getClienteById(Integer id){

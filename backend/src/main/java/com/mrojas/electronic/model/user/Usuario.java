@@ -37,6 +37,7 @@ public class Usuario implements UserDetails{
     @OneToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "id_empleado", referencedColumnName = "id")
     private Empleado empleado;
+    
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return List.of(new SimpleGrantedAuthority(empleado.getRol().getNombre()));

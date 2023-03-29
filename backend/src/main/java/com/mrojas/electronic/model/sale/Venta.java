@@ -41,4 +41,5 @@ public class Venta {
     @Temporal(TemporalType.DATE)
     @DateTimeFormat(pattern = "yyyy-mm-dd")
     private Date fecha;
+    private Double descuento;
 }

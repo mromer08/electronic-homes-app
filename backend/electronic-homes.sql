@@ -11,7 +11,7 @@ CREATE SCHEMA ControlClientes;
 
 CREATE TABLE ControlInventario.Marca(
     id SERIAL PRIMARY KEY,
-    nombre VARCHAR(50) NOT NULL
+    nombre VARCHAR(50) UNIQUE NOT NULL
 );
 
 CREATE TABLE ControlInventario.Producto(
@@ -52,7 +52,7 @@ CREATE TABLE ControlPersonal.Empleado(
     id SERIAL PRIMARY KEY,
     nombre VARCHAR(50) NOT NULL,
     apellido VARCHAR(50) NOT NULL,
-    fecha_contratacion DATE NOT NULL DEFAULT CURRENT_DATE,
+    fecha_contratacion DATE DEFAULT CURRENT_DATE,
     fecha_nacimiento DATE NOT NULL,
     salario DECIMAL(10,2) NOT NULL DEFAULT 3500.00,
     id_rol INTEGER NOT NULL,
@@ -63,8 +63,8 @@ CREATE TABLE ControlPersonal.Empleado(
 
 CREATE TABLE ControlUsuarios.Usuario(
     id SERIAL PRIMARY KEY,
-    nombre VARCHAR(50) UNIQUE NOT NULL,
-    password VARCHAR(100) NOT NULL,
+    nombre VARCHAR(30) UNIQUE NOT NULL,
+    password VARCHAR(255) NOT NULL,
     id_empleado INTEGER UNIQUE NOT NULL,
     FOREIGN KEY (id_empleado) REFERENCES ControlPersonal.Empleado (id)
 );
@@ -79,7 +79,7 @@ CREATE TABLE ControlInventario.Bodega(
 CREATE TABLE ControlInventario.InventarioBodega(
     id SERIAL PRIMARY KEY,
     id_bodega INTEGER NOT NULL,
-    id_producto INTEGER UNIQUE NOT NULL,
+    id_producto INTEGER NOT NULL,
     cantidad INTEGER NOT NULL DEFAULT 1,
     FOREIGN KEY (id_bodega) REFERENCES ControlInventario.Bodega (id),
     FOREIGN KEY (id_producto) REFERENCES ControlInventario.Producto (id)
@@ -88,7 +88,7 @@ CREATE TABLE ControlInventario.InventarioBodega(
 CREATE TABLE ControlInventario.InventarioSucursal(
     id SERIAL PRIMARY KEY,
     id_sucursal INTEGER NOT NULL,
-    id_producto INTEGER UNIQUE NOT NULL,
+    id_producto INTEGER NOT NULL,
     cantidad INTEGER NOT NULL DEFAULT 1,
     FOREIGN KEY (id_sucursal) REFERENCES ControlSucursales.Sucursal (id),
     FOREIGN KEY (id_producto) REFERENCES ControlInventario.Producto (id)
@@ -99,6 +99,7 @@ CREATE TABLE ControlVentas.Venta(
     id_empleado INTEGER NOT NULL,
     id_cliente INTEGER NOT NULL,
     fecha DATE NOT NULL DEFAULT CURRENT_DATE,
+    descuento DECIMAL(5,2) DEFAULT 0.0,
     FOREIGN KEY (id_empleado) REFERENCES ControlPersonal.Empleado (id),
     FOREIGN KEY (id_cliente) REFERENCES ControlClientes.Cliente (id)
 );
@@ -139,9 +140,9 @@ insert into ControlInventario.Marca (nombre) values ('Whirlpool');
 insert into ControlInventario.Marca (nombre) values ('General Electric');
 insert into ControlInventario.Marca (nombre) values ('Sony');
 insert into ControlInventario.Marca (nombre) values ('Panasonic');
-insert into ControlInventario.Marca (nombre) values ('General Electric');
 insert into ControlInventario.Marca (nombre) values ('Bosch');
 insert into ControlInventario.Marca (nombre) values ('LG');
+insert into ControlInventario.Marca (nombre) values ('Logitech');
 
 -- INSERSIONES DE PRODUCTOS
 insert into ControlInventario.Producto (nombre, precio, id_marca) values ('Refrigerador', 2212.75, 1);
@@ -181,7 +182,7 @@ insert into ControlSucursales.Direccion (direccion, municipio, departamento) val
 insert into ControlSucursales.Direccion (direccion, municipio, departamento) values ('5ta Avenida 1-21 Zona 3', 'Tiquisate', 'Escuintla');
 
 -- INSERSIONES DE CLIENTES
-insert into ControlClientes.Cliente (nombre, apellido, nit) values ('C', 'F', 0);
+insert into ControlClientes.Cliente (nombre, apellido, nit) values ('Consumidor', 'Final', 'C/F');
 insert into ControlClientes.Cliente (nombre, apellido, nit) values ('Allx', 'Stirley', 3738123193);
 insert into ControlClientes.Cliente (nombre, apellido, nit) values ('Ema', 'Enterle', 3828947953);
 insert into ControlClientes.Cliente (nombre, apellido, nit) values ('Bern', 'Alsina', 3475972292);
@@ -199,10 +200,10 @@ insert into ControlSucursales.Sucursal (nombre, id_direccion) values ('Sucursal 
 insert into ControlSucursales.Sucursal (nombre, id_direccion) values ('Sucursal Sur', 3);
 
 -- INSERSION DE ROLES
-insert into ControlPersonal.Rol (nombre) values ('Administrador');
-insert into ControlPersonal.Rol (nombre) values ('Bodeguero');
-insert into ControlPersonal.Rol (nombre) values ('Encargado Inventario');
-insert into ControlPersonal.Rol (nombre) values ('Vendedor');
+insert into ControlPersonal.Rol (nombre) values ('ADMIN');
+insert into ControlPersonal.Rol (nombre) values ('BODEGUERO');
+insert into ControlPersonal.Rol (nombre) values ('INVENTARIO');
+insert into ControlPersonal.Rol (nombre) values ('VENDEDOR');
 
 -- INSERSION DE EMPLEADOS
 insert into ControlPersonal.Empleado (nombre, apellido, fecha_contratacion, fecha_nacimiento, salario, id_rol, id_sucursal) values ('Zarla', 'Britland', '2022-04-03', '1996-03-15', 6015.79, 3, 1);
@@ -268,72 +269,201 @@ insert into ControlInventario.InventarioBodega (id_bodega, id_producto, cantidad
 
 -- INSERTANDO INVENTARIOS
 -- SUCURSAL CENTRAL
-insert into ControlInventario.InventarioSucursal (id_sucursal, id_producto, cantidad) values (1, 1, 4);
-insert into ControlInventario.InventarioSucursal (id_sucursal, id_producto, cantidad) values (1, 2, 4);
-insert into ControlInventario.InventarioSucursal (id_sucursal, id_producto, cantidad) values (1, 3, 4);
-insert into ControlInventario.InventarioSucursal (id_sucursal, id_producto, cantidad) values (1, 4, 2);
-insert into ControlInventario.InventarioSucursal (id_sucursal, id_producto, cantidad) values (1, 5, 2);
-insert into ControlInventario.InventarioSucursal (id_sucursal, id_producto, cantidad) values (1, 6, 10);
-insert into ControlInventario.InventarioSucursal (id_sucursal, id_producto, cantidad) values (1, 7, 5);
-insert into ControlInventario.InventarioSucursal (id_sucursal, id_producto, cantidad) values (1, 8, 6);
-insert into ControlInventario.InventarioSucursal (id_sucursal, id_producto, cantidad) values (1, 9, 2);
-insert into ControlInventario.InventarioSucursal (id_sucursal, id_producto, cantidad) values (1, 10, 7);
-insert into ControlInventario.InventarioSucursal (id_sucursal, id_producto, cantidad) values (1, 11, 8);
-insert into ControlInventario.InventarioSucursal (id_sucursal, id_producto, cantidad) values (1, 12, 1);
-insert into ControlInventario.InventarioSucursal (id_sucursal, id_producto, cantidad) values (1, 13, 1);
-insert into ControlInventario.InventarioSucursal (id_sucursal, id_producto, cantidad) values (1, 14, 6);
-insert into ControlInventario.InventarioSucursal (id_sucursal, id_producto, cantidad) values (1, 15, 5);
-insert into ControlInventario.InventarioSucursal (id_sucursal, id_producto, cantidad) values (1, 16, 5);
-insert into ControlInventario.InventarioSucursal (id_sucursal, id_producto, cantidad) values (1, 17, 7);
-insert into ControlInventario.InventarioSucursal (id_sucursal, id_producto, cantidad) values (1, 18, 8);
-insert into ControlInventario.InventarioSucursal (id_sucursal, id_producto, cantidad) values (1, 19, 5);
-insert into ControlInventario.InventarioSucursal (id_sucursal, id_producto, cantidad) values (1, 20, 4);
-insert into ControlInventario.InventarioSucursal (id_sucursal, id_producto, cantidad) values (1, 21, 10);
-insert into ControlInventario.InventarioSucursal (id_sucursal, id_producto, cantidad) values (1, 22, 1);
-insert into ControlInventario.InventarioSucursal (id_sucursal, id_producto, cantidad) values (1, 23, 1);
+insert into ControlInventario.InventarioSucursal (id_sucursal, id_producto, cantidad) values (1, 1, 1);
+insert into ControlInventario.InventarioSucursal (id_sucursal, id_producto, cantidad) values (1, 2, 10);
+insert into ControlInventario.InventarioSucursal (id_sucursal, id_producto, cantidad) values (1, 3, 5);
+insert into ControlInventario.InventarioSucursal (id_sucursal, id_producto, cantidad) values (1, 4, 7);
+insert into ControlInventario.InventarioSucursal (id_sucursal, id_producto, cantidad) values (1, 5, 5);
+insert into ControlInventario.InventarioSucursal (id_sucursal, id_producto, cantidad) values (1, 6, 3);
+insert into ControlInventario.InventarioSucursal (id_sucursal, id_producto, cantidad) values (1, 7, 8);
+insert into ControlInventario.InventarioSucursal (id_sucursal, id_producto, cantidad) values (1, 8, 8);
+insert into ControlInventario.InventarioSucursal (id_sucursal, id_producto, cantidad) values (1, 9, 6);
+insert into ControlInventario.InventarioSucursal (id_sucursal, id_producto, cantidad) values (1, 10, 1);
+insert into ControlInventario.InventarioSucursal (id_sucursal, id_producto, cantidad) values (1, 11, 5);
+insert into ControlInventario.InventarioSucursal (id_sucursal, id_producto, cantidad) values (1, 12, 10);
+insert into ControlInventario.InventarioSucursal (id_sucursal, id_producto, cantidad) values (1, 13, 7);
+insert into ControlInventario.InventarioSucursal (id_sucursal, id_producto, cantidad) values (1, 14, 2);
+insert into ControlInventario.InventarioSucursal (id_sucursal, id_producto, cantidad) values (1, 15, 7);
+insert into ControlInventario.InventarioSucursal (id_sucursal, id_producto, cantidad) values (1, 16, 10);
+insert into ControlInventario.InventarioSucursal (id_sucursal, id_producto, cantidad) values (1, 17, 10);
+insert into ControlInventario.InventarioSucursal (id_sucursal, id_producto, cantidad) values (1, 18, 6);
+insert into ControlInventario.InventarioSucursal (id_sucursal, id_producto, cantidad) values (1, 19, 2);
+insert into ControlInventario.InventarioSucursal (id_sucursal, id_producto, cantidad) values (1, 20, 2);
+insert into ControlInventario.InventarioSucursal (id_sucursal, id_producto, cantidad) values (1, 21, 8);
+insert into ControlInventario.InventarioSucursal (id_sucursal, id_producto, cantidad) values (1, 22, 8);
+insert into ControlInventario.InventarioSucursal (id_sucursal, id_producto, cantidad) values (1, 23, 2);
 insert into ControlInventario.InventarioSucursal (id_sucursal, id_producto, cantidad) values (1, 24, 3);
-insert into ControlInventario.InventarioSucursal (id_sucursal, id_producto, cantidad) values (1, 25, 10);
-insert into ControlInventario.InventarioSucursal (id_sucursal, id_producto, cantidad) values (1, 26, 6);
-insert into ControlInventario.InventarioSucursal (id_sucursal, id_producto, cantidad) values (1, 27, 10);
-insert into ControlInventario.InventarioSucursal (id_sucursal, id_producto, cantidad) values (1, 28, 1);
-insert into ControlInventario.InventarioSucursal (id_sucursal, id_producto, cantidad) values (1, 29, 9);
-insert into ControlInventario.InventarioSucursal (id_sucursal, id_producto, cantidad) values (1, 30, 5);
+insert into ControlInventario.InventarioSucursal (id_sucursal, id_producto, cantidad) values (1, 25, 9);
+insert into ControlInventario.InventarioSucursal (id_sucursal, id_producto, cantidad) values (1, 26, 1);
+insert into ControlInventario.InventarioSucursal (id_sucursal, id_producto, cantidad) values (1, 27, 6);
+insert into ControlInventario.InventarioSucursal (id_sucursal, id_producto, cantidad) values (1, 28, 3);
+insert into ControlInventario.InventarioSucursal (id_sucursal, id_producto, cantidad) values (1, 29, 7);
+insert into ControlInventario.InventarioSucursal (id_sucursal, id_producto, cantidad) values (1, 30, 7);
 
 -- SUCURSAL DEL NORTE
-insert into ControlInventario.InventarioSucursal (id_sucursal, id_producto, cantidad) values (2, 1, 5);
-insert into ControlInventario.InventarioSucursal (id_sucursal, id_producto, cantidad) values (2, 2, 10);
-insert into ControlInventario.InventarioSucursal (id_sucursal, id_producto, cantidad) values (2, 3, 1);
-insert into ControlInventario.InventarioSucursal (id_sucursal, id_producto, cantidad) values (2, 4, 3);
-insert into ControlInventario.InventarioSucursal (id_sucursal, id_producto, cantidad) values (2, 5, 9);
+insert into ControlInventario.InventarioSucursal (id_sucursal, id_producto, cantidad) values (2, 1, 8);
+insert into ControlInventario.InventarioSucursal (id_sucursal, id_producto, cantidad) values (2, 2, 8);
+insert into ControlInventario.InventarioSucursal (id_sucursal, id_producto, cantidad) values (2, 3, 10);
+insert into ControlInventario.InventarioSucursal (id_sucursal, id_producto, cantidad) values (2, 4, 8);
+insert into ControlInventario.InventarioSucursal (id_sucursal, id_producto, cantidad) values (2, 5, 8);
 insert into ControlInventario.InventarioSucursal (id_sucursal, id_producto, cantidad) values (2, 6, 5);
-insert into ControlInventario.InventarioSucursal (id_sucursal, id_producto, cantidad) values (2, 7, 9);
-insert into ControlInventario.InventarioSucursal (id_sucursal, id_producto, cantidad) values (2, 8, 10);
-insert into ControlInventario.InventarioSucursal (id_sucursal, id_producto, cantidad) values (2, 9, 8);
-insert into ControlInventario.InventarioSucursal (id_sucursal, id_producto, cantidad) values (2, 10, 5);
-insert into ControlInventario.InventarioSucursal (id_sucursal, id_producto, cantidad) values (2, 11, 10);
-insert into ControlInventario.InventarioSucursal (id_sucursal, id_producto, cantidad) values (2, 12, 8);
-insert into ControlInventario.InventarioSucursal (id_sucursal, id_producto, cantidad) values (2, 13, 2);
-insert into ControlInventario.InventarioSucursal (id_sucursal, id_producto, cantidad) values (2, 14, 1);
+insert into ControlInventario.InventarioSucursal (id_sucursal, id_producto, cantidad) values (2, 7, 1);
+insert into ControlInventario.InventarioSucursal (id_sucursal, id_producto, cantidad) values (2, 8, 1);
+insert into ControlInventario.InventarioSucursal (id_sucursal, id_producto, cantidad) values (2, 9, 4);
+insert into ControlInventario.InventarioSucursal (id_sucursal, id_producto, cantidad) values (2, 10, 1);
+insert into ControlInventario.InventarioSucursal (id_sucursal, id_producto, cantidad) values (2, 11, 2);
+insert into ControlInventario.InventarioSucursal (id_sucursal, id_producto, cantidad) values (2, 12, 5);
+insert into ControlInventario.InventarioSucursal (id_sucursal, id_producto, cantidad) values (2, 13, 3);
+insert into ControlInventario.InventarioSucursal (id_sucursal, id_producto, cantidad) values (2, 14, 5);
 insert into ControlInventario.InventarioSucursal (id_sucursal, id_producto, cantidad) values (2, 15, 6);
+insert into ControlInventario.InventarioSucursal (id_sucursal, id_producto, cantidad) values (2, 16, 1);
+insert into ControlInventario.InventarioSucursal (id_sucursal, id_producto, cantidad) values (2, 17, 4);
+insert into ControlInventario.InventarioSucursal (id_sucursal, id_producto, cantidad) values (2, 18, 5);
+insert into ControlInventario.InventarioSucursal (id_sucursal, id_producto, cantidad) values (2, 19, 2);
+insert into ControlInventario.InventarioSucursal (id_sucursal, id_producto, cantidad) values (2, 20, 5);
+insert into ControlInventario.InventarioSucursal (id_sucursal, id_producto, cantidad) values (2, 21, 6);
+insert into ControlInventario.InventarioSucursal (id_sucursal, id_producto, cantidad) values (2, 22, 8);
+insert into ControlInventario.InventarioSucursal (id_sucursal, id_producto, cantidad) values (2, 23, 8);
+insert into ControlInventario.InventarioSucursal (id_sucursal, id_producto, cantidad) values (2, 24, 5);
+insert into ControlInventario.InventarioSucursal (id_sucursal, id_producto, cantidad) values (2, 25, 7);
 
 -- SUCURSAL DEL SUR
-insert into ControlInventario.InventarioSucursal (id_sucursal, id_producto, cantidad) values (3, 1, 6);
-insert into ControlInventario.InventarioSucursal (id_sucursal, id_producto, cantidad) values (3, 2, 8);
-insert into ControlInventario.InventarioSucursal (id_sucursal, id_producto, cantidad) values (3, 3, 4);
-insert into ControlInventario.InventarioSucursal (id_sucursal, id_producto, cantidad) values (3, 4, 2);
-insert into ControlInventario.InventarioSucursal (id_sucursal, id_producto, cantidad) values (3, 5, 1);
-insert into ControlInventario.InventarioSucursal (id_sucursal, id_producto, cantidad) values (3, 6, 7);
-insert into ControlInventario.InventarioSucursal (id_sucursal, id_producto, cantidad) values (3, 7, 2);
-insert into ControlInventario.InventarioSucursal (id_sucursal, id_producto, cantidad) values (3, 8, 1);
-insert into ControlInventario.InventarioSucursal (id_sucursal, id_producto, cantidad) values (3, 9, 3);
-insert into ControlInventario.InventarioSucursal (id_sucursal, id_producto, cantidad) values (3, 10, 3);
+insert into ControlInventario.InventarioSucursal (id_sucursal, id_producto, cantidad) values (3, 1, 10);
+insert into ControlInventario.InventarioSucursal (id_sucursal, id_producto, cantidad) values (3, 2, 10);
+insert into ControlInventario.InventarioSucursal (id_sucursal, id_producto, cantidad) values (3, 3, 1);
+insert into ControlInventario.InventarioSucursal (id_sucursal, id_producto, cantidad) values (3, 4, 8);
+insert into ControlInventario.InventarioSucursal (id_sucursal, id_producto, cantidad) values (3, 5, 3);
+insert into ControlInventario.InventarioSucursal (id_sucursal, id_producto, cantidad) values (3, 6, 8);
+insert into ControlInventario.InventarioSucursal (id_sucursal, id_producto, cantidad) values (3, 7, 9);
+insert into ControlInventario.InventarioSucursal (id_sucursal, id_producto, cantidad) values (3, 8, 5);
+insert into ControlInventario.InventarioSucursal (id_sucursal, id_producto, cantidad) values (3, 9, 7);
+insert into ControlInventario.InventarioSucursal (id_sucursal, id_producto, cantidad) values (3, 10, 5);
 insert into ControlInventario.InventarioSucursal (id_sucursal, id_producto, cantidad) values (3, 11, 7);
-insert into ControlInventario.InventarioSucursal (id_sucursal, id_producto, cantidad) values (3, 12, 9);
-insert into ControlInventario.InventarioSucursal (id_sucursal, id_producto, cantidad) values (3, 13, 8);
-insert into ControlInventario.InventarioSucursal (id_sucursal, id_producto, cantidad) values (3, 14, 7);
-insert into ControlInventario.InventarioSucursal (id_sucursal, id_producto, cantidad) values (3, 15, 2);
-insert into ControlInventario.InventarioSucursal (id_sucursal, id_producto, cantidad) values (3, 16, 9);
-insert into ControlInventario.InventarioSucursal (id_sucursal, id_producto, cantidad) values (3, 17, 10);
-insert into ControlInventario.InventarioSucursal (id_sucursal, id_producto, cantidad) values (3, 18, 8);
-insert into ControlInventario.InventarioSucursal (id_sucursal, id_producto, cantidad) values (3, 19, 6);
-insert into ControlInventario.InventarioSucursal (id_sucursal, id_producto, cantidad) values (3, 20, 6);
+insert into ControlInventario.InventarioSucursal (id_sucursal, id_producto, cantidad) values (3, 12, 8);
+insert into ControlInventario.InventarioSucursal (id_sucursal, id_producto, cantidad) values (3, 13, 5);
+insert into ControlInventario.InventarioSucursal (id_sucursal, id_producto, cantidad) values (3, 14, 6);
+insert into ControlInventario.InventarioSucursal (id_sucursal, id_producto, cantidad) values (3, 15, 3);
+
+-- INSERTANDO VENTAS
+-- SUCURSAL CENTRAL
+insert into ControlVentas.Venta (id_empleado, id_cliente, fecha, descuento) values (5, 1, '2022-04-10', 0.1);
+-- DETALLE V1
+insert into ControlVentas.DetalleVenta (id_venta, id_producto, cantidad) values (1, 12, 4);
+insert into ControlVentas.DetalleVenta (id_venta, id_producto, cantidad) values (1, 8, 4);
+insert into ControlVentas.DetalleVenta (id_venta, id_producto, cantidad) values (1, 9, 3);
+insert into ControlVentas.DetalleVenta (id_venta, id_producto, cantidad) values (1, 1, 2);
+insert into ControlVentas.DetalleVenta (id_venta, id_producto, cantidad) values (1, 4, 4);
+
+insert into ControlVentas.Venta (id_empleado, id_cliente, fecha, descuento) values (5, 2, '2022-10-31', 0.1);
+-- DETALLE V2
+insert into ControlVentas.DetalleVenta (id_venta, id_producto, cantidad) values (2, 4, 4);
+insert into ControlVentas.DetalleVenta (id_venta, id_producto, cantidad) values (2, 6, 5);
+insert into ControlVentas.DetalleVenta (id_venta, id_producto, cantidad) values (2, 3, 5);
+insert into ControlVentas.DetalleVenta (id_venta, id_producto, cantidad) values (2, 11, 2);
+insert into ControlVentas.DetalleVenta (id_venta, id_producto, cantidad) values (2, 13, 3);
+
+insert into ControlVentas.Venta (id_empleado, id_cliente, fecha, descuento) values (4, 4, '2022-12-03', 0.1);
+-- DETALLE V3
+insert into ControlVentas.DetalleVenta (id_venta, id_producto, cantidad) values (3, 12, 4);
+insert into ControlVentas.DetalleVenta (id_venta, id_producto, cantidad) values (3, 4, 2);
+insert into ControlVentas.DetalleVenta (id_venta, id_producto, cantidad) values (3, 8, 2);
+insert into ControlVentas.DetalleVenta (id_venta, id_producto, cantidad) values (3, 5, 3);
+insert into ControlVentas.DetalleVenta (id_venta, id_producto, cantidad) values (3, 9, 5);
+insert into ControlVentas.DetalleVenta (id_venta, id_producto, cantidad) values (3, 15, 5);
+
+insert into ControlVentas.Venta (id_empleado, id_cliente, fecha, descuento) values (4, 6, '2023-01-08', 0.1);
+-- DETALLE V4
+insert into ControlVentas.DetalleVenta (id_venta, id_producto, cantidad) values (4, 14, 3);
+insert into ControlVentas.DetalleVenta (id_venta, id_producto, cantidad) values (4, 8, 1);
+insert into ControlVentas.DetalleVenta (id_venta, id_producto, cantidad) values (4, 7, 2);
+insert into ControlVentas.DetalleVenta (id_venta, id_producto, cantidad) values (4, 12, 2);
+insert into ControlVentas.DetalleVenta (id_venta, id_producto, cantidad) values (4, 5, 3);
+insert into ControlVentas.DetalleVenta (id_venta, id_producto, cantidad) values (4, 24, 5);
+
+insert into ControlVentas.Venta (id_empleado, id_cliente, fecha, descuento) values (4, 11, '2022-05-09', 0.0);
+-- DETALLE V5
+insert into ControlVentas.DetalleVenta (id_venta, id_producto, cantidad) values (5, 6, 3);
+insert into ControlVentas.DetalleVenta (id_venta, id_producto, cantidad) values (5, 3, 3);
+insert into ControlVentas.DetalleVenta (id_venta, id_producto, cantidad) values (5, 2, 4);
+insert into ControlVentas.DetalleVenta (id_venta, id_producto, cantidad) values (5, 9, 2);
+insert into ControlVentas.DetalleVenta (id_venta, id_producto, cantidad) values (5, 10, 1);
+insert into ControlVentas.DetalleVenta (id_venta, id_producto, cantidad) values (5, 22, 4);
+
+-- SUCURSAL NORTE
+insert into ControlVentas.Venta (id_empleado, id_cliente, fecha, descuento) values (6, 4, '2022-05-04', 0.05);
+-- DETALLE V1
+insert into ControlVentas.DetalleVenta (id_venta, id_producto, cantidad) values (6, 3, 2);
+insert into ControlVentas.DetalleVenta (id_venta, id_producto, cantidad) values (6, 12, 3);
+insert into ControlVentas.DetalleVenta (id_venta, id_producto, cantidad) values (6, 7, 2);
+insert into ControlVentas.DetalleVenta (id_venta, id_producto, cantidad) values (6, 13, 4);
+insert into ControlVentas.DetalleVenta (id_venta, id_producto, cantidad) values (6, 10, 1);
+insert into ControlVentas.DetalleVenta (id_venta, id_producto, cantidad) values (6, 8, 5);
+
+insert into ControlVentas.Venta (id_empleado, id_cliente, fecha, descuento) values (7, 3, '2023-02-24', 0.02);
+-- DETALLE V2
+insert into ControlVentas.DetalleVenta (id_venta, id_producto, cantidad) values (7, 2, 2);
+insert into ControlVentas.DetalleVenta (id_venta, id_producto, cantidad) values (7, 1, 2);
+insert into ControlVentas.DetalleVenta (id_venta, id_producto, cantidad) values (7, 7, 1);
+insert into ControlVentas.DetalleVenta (id_venta, id_producto, cantidad) values (7, 3, 5);
+insert into ControlVentas.DetalleVenta (id_venta, id_producto, cantidad) values (7, 8, 3);
+insert into ControlVentas.DetalleVenta (id_venta, id_producto, cantidad) values (7, 14, 1);
+
+insert into ControlVentas.Venta (id_empleado, id_cliente, fecha, descuento) values (6, 10, '2022-10-24', 0.02);
+-- DETALLE V3
+insert into ControlVentas.DetalleVenta (id_venta, id_producto, cantidad) values (8, 8, 5);
+insert into ControlVentas.DetalleVenta (id_venta, id_producto, cantidad) values (8, 13, 3);
+insert into ControlVentas.DetalleVenta (id_venta, id_producto, cantidad) values (8, 6, 5);
+insert into ControlVentas.DetalleVenta (id_venta, id_producto, cantidad) values (8, 19, 1);
+insert into ControlVentas.DetalleVenta (id_venta, id_producto, cantidad) values (8, 1, 5);
+insert into ControlVentas.DetalleVenta (id_venta, id_producto, cantidad) values (8, 3, 1);
+
+insert into ControlVentas.Venta (id_empleado, id_cliente, fecha, descuento) values (7, 7, '2023-02-01', 0.0);
+-- DETALLE V4
+insert into ControlVentas.DetalleVenta (id_venta, id_producto, cantidad) values (9, 15, 2);
+insert into ControlVentas.DetalleVenta (id_venta, id_producto, cantidad) values (9, 10, 2);
+insert into ControlVentas.DetalleVenta (id_venta, id_producto, cantidad) values (9, 9, 4);
+insert into ControlVentas.DetalleVenta (id_venta, id_producto, cantidad) values (9, 13, 3);
+insert into ControlVentas.DetalleVenta (id_venta, id_producto, cantidad) values (9, 19, 5);
+insert into ControlVentas.DetalleVenta (id_venta, id_producto, cantidad) values (9, 12, 2);
+
+insert into ControlVentas.Venta (id_empleado, id_cliente, fecha, descuento) values (7, 6, '2023-02-15', 0.05);
+-- DETALLE V5
+insert into ControlVentas.DetalleVenta (id_venta, id_producto, cantidad) values (10, 1, 1);
+insert into ControlVentas.DetalleVenta (id_venta, id_producto, cantidad) values (10, 14, 1);
+insert into ControlVentas.DetalleVenta (id_venta, id_producto, cantidad) values (10, 8, 2);
+insert into ControlVentas.DetalleVenta (id_venta, id_producto, cantidad) values (10, 13, 5);
+
+-- SUCURSAL SUR
+insert into ControlVentas.Venta (id_empleado, id_cliente, fecha, descuento) values (14, 3, '2022-05-29', 0.05);
+-- DETALLE V1
+insert into ControlVentas.DetalleVenta (id_venta, id_producto, cantidad) values (11, 13, 4);
+insert into ControlVentas.DetalleVenta (id_venta, id_producto, cantidad) values (11, 14, 4);
+insert into ControlVentas.DetalleVenta (id_venta, id_producto, cantidad) values (11, 1, 5);
+insert into ControlVentas.DetalleVenta (id_venta, id_producto, cantidad) values (11, 3, 3);
+
+insert into ControlVentas.Venta (id_empleado, id_cliente, fecha, descuento) values (14, 9, '2022-07-12', 0.1);
+-- DETALLE V2
+insert into ControlVentas.DetalleVenta (id_venta, id_producto, cantidad) values (12, 7, 5);
+insert into ControlVentas.DetalleVenta (id_venta, id_producto, cantidad) values (12, 1, 3);
+insert into ControlVentas.DetalleVenta (id_venta, id_producto, cantidad) values (12, 9, 5);
+insert into ControlVentas.DetalleVenta (id_venta, id_producto, cantidad) values (12, 5, 2);
+
+insert into ControlVentas.Venta (id_empleado, id_cliente, fecha, descuento) values (14, 6, '2022-09-15', 0.1);
+-- DETALLE V3
+insert into ControlVentas.DetalleVenta (id_venta, id_producto, cantidad) values (13, 12, 4);
+insert into ControlVentas.DetalleVenta (id_venta, id_producto, cantidad) values (13, 4, 1);
+insert into ControlVentas.DetalleVenta (id_venta, id_producto, cantidad) values (13, 3, 5);
+insert into ControlVentas.DetalleVenta (id_venta, id_producto, cantidad) values (13, 1, 2);
+insert into ControlVentas.DetalleVenta (id_venta, id_producto, cantidad) values (13, 13, 4);
+
+insert into ControlVentas.Venta (id_empleado, id_cliente, fecha, descuento) values (15, 11, '2022-08-18', 0.02);
+-- DETALLE V4
+insert into ControlVentas.DetalleVenta (id_venta, id_producto, cantidad) values (14, 11, 1);
+insert into ControlVentas.DetalleVenta (id_venta, id_producto, cantidad) values (14, 9, 2);
+insert into ControlVentas.DetalleVenta (id_venta, id_producto, cantidad) values (14, 14, 5);
+
+insert into ControlVentas.Venta (id_empleado, id_cliente, fecha, descuento) values (15, 11, '2022-06-07', 0.05);
+-- DETALLE V5
+insert into ControlVentas.DetalleVenta (id_venta, id_producto, cantidad) values (15, 4, 1);
+insert into ControlVentas.DetalleVenta (id_venta, id_producto, cantidad) values (15, 9, 1);
+insert into ControlVentas.DetalleVenta (id_venta, id_producto, cantidad) values (15, 1, 5);

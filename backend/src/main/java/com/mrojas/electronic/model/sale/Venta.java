@@ -17,6 +17,7 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
+import jakarta.persistence.Transient;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -42,4 +43,7 @@ public class Venta {
     @DateTimeFormat(pattern = "yyyy-mm-dd")
     private Date fecha;
     private Double descuento;
+    @Transient
+    @Builder.Default
+    private Double total = 0.0;
 }

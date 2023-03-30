@@ -230,6 +230,31 @@ insert into ControlPersonal.Empleado (nombre, apellido, fecha_contratacion, fech
 insert into ControlPersonal.Empleado (nombre, apellido, fecha_contratacion, fecha_nacimiento, salario, id_rol, id_sucursal) values ('Stefania', 'Wortman', '2022-10-27', '1998-12-11', 7000.99, 2, 1);
 
 -- USUARIOS PENDIENTES POR TEMAS DE ENCRIPTACION
+-- EMPLEADOS COMUNES
+insert into ControlUsuarios.Usuario (nombre, password, id_empleado) values ('dclohessy0', '$argon2id$v=19$m=1024,t=1,p=1$kcRmMUQX1xGFyFNMcMj+ew$jOk9O0aqWwOhPZmpPDnIz8q2Djqf2Q0cMl83g3u41uQ', 1);
+insert into ControlUsuarios.Usuario (nombre, password, id_empleado) values ('akinsman1', '$argon2id$v=19$m=1024,t=1,p=1$kcRmMUQX1xGFyFNMcMj+ew$jOk9O0aqWwOhPZmpPDnIz8q2Djqf2Q0cMl83g3u41uQ', 2);
+insert into ControlUsuarios.Usuario (nombre, password, id_empleado) values ('qberthel2', '$argon2id$v=19$m=1024,t=1,p=1$kcRmMUQX1xGFyFNMcMj+ew$jOk9O0aqWwOhPZmpPDnIz8q2Djqf2Q0cMl83g3u41uQ', 3);
+insert into ControlUsuarios.Usuario (nombre, password, id_empleado) values ('eingman3', '$argon2id$v=19$m=1024,t=1,p=1$kcRmMUQX1xGFyFNMcMj+ew$jOk9O0aqWwOhPZmpPDnIz8q2Djqf2Q0cMl83g3u41uQ', 4);
+insert into ControlUsuarios.Usuario (nombre, password, id_empleado) values ('egrube4', '$argon2id$v=19$m=1024,t=1,p=1$kcRmMUQX1xGFyFNMcMj+ew$jOk9O0aqWwOhPZmpPDnIz8q2Djqf2Q0cMl83g3u41uQ', 5);
+insert into ControlUsuarios.Usuario (nombre, password, id_empleado) values ('fsaffle5', '$argon2id$v=19$m=1024,t=1,p=1$kcRmMUQX1xGFyFNMcMj+ew$jOk9O0aqWwOhPZmpPDnIz8q2Djqf2Q0cMl83g3u41uQ', 6);
+insert into ControlUsuarios.Usuario (nombre, password, id_empleado) values ('jjardein6', '$argon2id$v=19$m=1024,t=1,p=1$kcRmMUQX1xGFyFNMcMj+ew$jOk9O0aqWwOhPZmpPDnIz8q2Djqf2Q0cMl83g3u41uQ', 7);
+insert into ControlUsuarios.Usuario (nombre, password, id_empleado) values ('bglasscock7', '$argon2id$v=19$m=1024,t=1,p=1$kcRmMUQX1xGFyFNMcMj+ew$jOk9O0aqWwOhPZmpPDnIz8q2Djqf2Q0cMl83g3u41uQ', 8);
+insert into ControlUsuarios.Usuario (nombre, password, id_empleado) values ('bkorneluk8', '$argon2id$v=19$m=1024,t=1,p=1$kcRmMUQX1xGFyFNMcMj+ew$jOk9O0aqWwOhPZmpPDnIz8q2Djqf2Q0cMl83g3u41uQ', 9);
+insert into ControlUsuarios.Usuario (nombre, password, id_empleado) values ('fledington9', '$argon2id$v=19$m=1024,t=1,p=1$kcRmMUQX1xGFyFNMcMj+ew$jOk9O0aqWwOhPZmpPDnIz8q2Djqf2Q0cMl83g3u41uQ', 10);
+insert into ControlUsuarios.Usuario (nombre, password, id_empleado) values ('rmalcolmsona', '$argon2id$v=19$m=1024,t=1,p=1$kcRmMUQX1xGFyFNMcMj+ew$jOk9O0aqWwOhPZmpPDnIz8q2Djqf2Q0cMl83g3u41uQ', 11);
+insert into ControlUsuarios.Usuario (nombre, password, id_empleado) values ('tlittrickb', '$argon2id$v=19$m=1024,t=1,p=1$kcRmMUQX1xGFyFNMcMj+ew$jOk9O0aqWwOhPZmpPDnIz8q2Djqf2Q0cMl83g3u41uQ', 12);
+insert into ControlUsuarios.Usuario (nombre, password, id_empleado) values ('hblaisc', '$argon2id$v=19$m=1024,t=1,p=1$kcRmMUQX1xGFyFNMcMj+ew$jOk9O0aqWwOhPZmpPDnIz8q2Djqf2Q0cMl83g3u41uQ', 13);
+insert into ControlUsuarios.Usuario (nombre, password, id_empleado) values ('mraithd', '$argon2id$v=19$m=1024,t=1,p=1$kcRmMUQX1xGFyFNMcMj+ew$jOk9O0aqWwOhPZmpPDnIz8q2Djqf2Q0cMl83g3u41uQ', 14);
+insert into ControlUsuarios.Usuario (nombre, password, id_empleado) values ('jsheade', '$argon2id$v=19$m=1024,t=1,p=1$kcRmMUQX1xGFyFNMcMj+ew$jOk9O0aqWwOhPZmpPDnIz8q2Djqf2Q0cMl83g3u41uQ', 15);
+
+-- ADMIN
+insert into ControlUsuarios.Usuario (nombre, password, id_empleado) values ('admin', '$argon2id$v=19$m=1024,t=1,p=1$kcRmMUQX1xGFyFNMcMj+ew$jOk9O0aqWwOhPZmpPDnIz8q2Djqf2Q0cMl83g3u41uQ', 16);
+
+-- BODEGUEROS
+insert into ControlUsuarios.Usuario (nombre, password, id_empleado) values ('wgusneyg', '$argon2id$v=19$m=1024,t=1,p=1$kcRmMUQX1xGFyFNMcMj+ew$jOk9O0aqWwOhPZmpPDnIz8q2Djqf2Q0cMl83g3u41uQ', 17);
+insert into ControlUsuarios.Usuario (nombre, password, id_empleado) values ('dretterh', '$argon2id$v=19$m=1024,t=1,p=1$kcRmMUQX1xGFyFNMcMj+ew$jOk9O0aqWwOhPZmpPDnIz8q2Djqf2Q0cMl83g3u41uQ', 18);
+insert into ControlUsuarios.Usuario (nombre, password, id_empleado) values ('snixoni', '$argon2id$v=19$m=1024,t=1,p=1$kcRmMUQX1xGFyFNMcMj+ew$jOk9O0aqWwOhPZmpPDnIz8q2Djqf2Q0cMl83g3u41uQ', 19);
+insert into ControlUsuarios.Usuario (nombre, password, id_empleado) values ('acaldowj', '$argon2id$v=19$m=1024,t=1,p=1$kcRmMUQX1xGFyFNMcMj+ew$jOk9O0aqWwOhPZmpPDnIz8q2Djqf2Q0cMl83g3u41uQ', 20);
 
 
 -- INSERTANDO BODEGA GENERAL

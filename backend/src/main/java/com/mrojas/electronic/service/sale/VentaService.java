@@ -22,15 +22,15 @@ public class VentaService {
     }
 
     public Venta saveVenta(Venta venta){
-        Pageable lastVentOrderByDate = PageRequest.of(0,1, Sort.by(Sort.Direction.DESC, "fecha"));
-        Optional<Venta> ventaPrev = ventaRepository
-                .findByCliente(
-                    venta.getCliente().getId(),
-                    lastVentOrderByDate);
+        // Pageable lastVentOrderByDate = PageRequest.of(0,1, Sort.by(Sort.Direction.DESC, "fecha"));
+        // Optional<Venta> ventaPrev = Optional.ofNullable(ventaRepository
+        //         .findByCliente(
+        //             venta.getCliente().getId(),
+        //             lastVentOrderByDate).get(0));
 
-        venta.setDescuento(calcDescuento(
-            ventaPrev.isPresent() ? ventaPrev.get().getTotal() : 0.0 
-        ));
+        // venta.setDescuento(calcDescuento(
+        //     ventaPrev.isPresent() ? ventaPrev.get().getTotal() : 0.0 
+        // ));
         return ventaRepository.save(venta);
     }
 

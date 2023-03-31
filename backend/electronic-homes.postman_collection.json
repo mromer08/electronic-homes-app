@@ -1,0 +1,950 @@
+{
+	"info": {
+		"_postman_id": "c5129024-613a-4d3b-9357-9f0035b7313b",
+		"name": "electronic-homes",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Producto",
+			"item": [
+				{
+					"name": "GET count by marca",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"id\": 1,\n    \"nombre\":\"Toshiba\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/producto/count",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"producto",
+								"count"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET all products",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/api/producto",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"producto"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET product by id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/api/producto/56",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"producto",
+								"56"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "CREATE product",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "    {\n        \"nombre\": \"treinta y uno\",\n        \"precio\": 2975.64,\n        \"marca\": {\n            \"id\": 1,\n            \"nombre\": \"Toshiba\"\n        }\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/producto",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"producto"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update product",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \n    \"nombre\": \"Treinta y seis\",\n    \"precio\": 36.5,\n    \"marca\": {\n            \"id\": 2\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/producto/36",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"producto",
+								"36"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update product",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"nombre\": \"Treinta y seis\",\n    \"precio\": 36.5,\n    \"marca\": {\n            \"id\": 2,\n            \"nombre\":\"Sam\"\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/producto/67",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"producto",
+								"67"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Cliente",
+			"item": [
+				{
+					"name": "GET all clientes",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/api/cliente",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"cliente"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET cliente by id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/api/cliente/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"cliente",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "CREATE cliente",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"nombre\": \"New5\",\n    \"apellido\": \"Customer\",\n    \"nit\": \"12345345h1\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/cliente",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"cliente"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update cliente",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"id\":1,\n    \"nombre\": \"Consumidor\",\n    \"apellido\": \"Final\",\n    \"nit\": \"C/F\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/cliente/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"cliente",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete cliente",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/api/cliente/32",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"cliente",
+								"32"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Sucursal",
+			"item": [
+				{
+					"name": "GET all sucursales",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/api/sucursal",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"sucursal"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET sucursal by id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/api/sucursal/4",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"sucursal",
+								"4"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Bodega",
+			"item": [
+				{
+					"name": "GET all bodegas",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/api/bodega",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"bodega"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET sucursal by id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/api/bodega/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"bodega",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Empleado",
+			"item": [
+				{
+					"name": "GET all empleados",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/api/empleado",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"empleado"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET empleado by id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/api/empleado/16",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"empleado",
+								"16"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "CREATE empleado",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"nombre\": \"Hola\",\n    \"apellido\": \"Nuevo\",\n    \"fecha_contratacion\": \"2022-04-03\",\n    \"fecha_nacimiento\": \"1996-03-15\",\n    \"salario\": 6015.79,\n    \"rol\": {\n        \"id\": 3,\n        \"nombre\": \"Encargado Inventario\"\n    },\n    \"sucursal\": {\n        \"id\": 1,\n        \"nombre\": \"Sucursal Central\",\n        \"direccion\": {\n            \"id\": 1,\n            \"direccion\": \"6ta Avenida 5-10 Zona 2\",\n            \"municipio\": \"Guatemala\",\n            \"departamento\": \"Guatemala\"\n        }\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/empleado",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"empleado"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update empleado",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"id\":22,\n    \"nombre\": \"update\",\n    \"apellido\": \"update\",\n    \"fecha_contratacion\": \"2022-04-03\",\n    \"fecha_nacimiento\": \"1996-03-15\",\n    \"salario\": 6015.79,\n    \"rol\": {\n        \"id\": 3,\n        \"nombre\": \"Encargado Inventario\"\n    },\n    \"sucursal\": {\n        \"id\": 1,\n        \"nombre\": \"Sucursal Central\",\n        \"direccion\": {\n            \"id\": 1,\n            \"direccion\": \"6ta Avenida 5-10 Zona 2\",\n            \"municipio\": \"Guatemala\",\n            \"departamento\": \"Guatemala\"\n        }\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/empleado/22",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"empleado",
+								"22"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete empleado",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/api/empleado/22",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"empleado",
+								"22"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Inventario-bodega",
+			"item": [
+				{
+					"name": "GET all registros bodega",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/api/inventario-bodega",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"inventario-bodega"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET registros bodega by id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/api/inventario-bodega/31",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"inventario-bodega",
+								"31"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "CREATE registro bodega",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"bodega\": {\n        \"id\": 1,\n        \"nombre\": \"Bodega Central\",\n        \"direccion\": {\n            \"id\": 1,\n            \"direccion\": \"6ta Avenida 5-10 Zona 2\",\n            \"municipio\": \"Guatemala\",\n            \"departamento\": \"Guatemala\"\n        }\n    },\n    \"producto\": {\n        \"id\": 1,\n        \"nombre\": \"Refrigerador\",\n        \"precio\": 2212.75,\n        \"marca\": {\n            \"id\": 1,\n            \"nombre\": \"Toshiba\"\n        }\n    },\n    \"cantidad\": 37\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/inventario-bodega",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"inventario-bodega"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update registro bodega",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"id\": 31,\n    \"bodega\": {\n        \"id\": 1,\n        \"nombre\": \"Bodega Central\",\n        \"direccion\": {\n            \"id\": 1,\n            \"direccion\": \"6ta Avenida 5-10 Zona 2\",\n            \"municipio\": \"Guatemala\",\n            \"departamento\": \"Guatemala\"\n        }\n    },\n    \"producto\": {\n        \"id\": 1,\n        \"nombre\": \"Refrigerador\",\n        \"precio\": 2212.75,\n        \"marca\": {\n            \"id\": 1,\n            \"nombre\": \"Toshiba\"\n        }\n    },\n    \"cantidad\": 16\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/inventario-bodega/31",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"inventario-bodega",
+								"31"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete registro bodega",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/api/inventario-bodega/31",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"inventario-bodega",
+								"31"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET registro bodega by producto",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/api/inventario-bodega/producto/30",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"inventario-bodega",
+								"producto",
+								"30"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Inventario-sucursal",
+			"item": [
+				{
+					"name": "GET all registros sucursal",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/api/inventario-sucursal",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"inventario-sucursal"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET registros sucursal by id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/api/inventario-sucursal/4",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"inventario-sucursal",
+								"4"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "CREATE registro sucursal",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"sucursal\": {\n        \"id\": 1,\n        \"nombre\": \"Sucursal Central\",\n        \"direccion\": {\n            \"id\": 1,\n            \"direccion\": \"6ta Avenida 5-10 Zona 2\",\n            \"municipio\": \"Guatemala\",\n            \"departamento\": \"Guatemala\"\n        }\n    },\n    \"producto\": {\n        \"id\": 4,\n        \"nombre\": \"Horno\",\n        \"precio\": 2263.92,\n        \"marca\": {\n            \"id\": 1,\n            \"nombre\": \"Toshiba\"\n        }\n    },\n    \"cantidad\": 234\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/inventario-sucursal",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"inventario-sucursal"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update registro sucursal",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"id\": 66,\n    \"sucursal\": {\n        \"id\": 1,\n        \"nombre\": \"Sucursal Central\",\n        \"direccion\": {\n            \"id\": 1,\n            \"direccion\": \"6ta Avenida 5-10 Zona 2\",\n            \"municipio\": \"Guatemala\",\n            \"departamento\": \"Guatemala\"\n        }\n    },\n    \"producto\": {\n        \"id\": 4,\n        \"nombre\": \"Horno\",\n        \"precio\": 2263.92,\n        \"marca\": {\n            \"id\": 1,\n            \"nombre\": \"Toshiba\"\n        }\n    },\n    \"cantidad\": 543\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/inventario-sucursal/66",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"inventario-sucursal",
+								"66"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete registro sucursal",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/api/inventario-sucursal/66",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"inventario-sucursal",
+								"66"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET registro bodega by producto",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"id\": 1,\n    \"nombre\":\"Toshiba\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/inventario-sucursal/producto/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"inventario-sucursal",
+								"producto",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET registro bodega by sucursal",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"id\": 1,\n    \"nombre\":\"Toshiba\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/inventario-sucursal/sucursal/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"inventario-sucursal",
+								"sucursal",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Usuario",
+			"item": [
+				{
+					"name": "GET all usuarios",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/api/usuario",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"usuario"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET usuario by id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/api/usuario/15",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"usuario",
+								"15"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "CREATE usuario",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"nombre\": \"admin\",\n    \"password\": \"1234\",\n    \"empleado\": {\n        \"id\": 16,\n        \"nombre\": \"Cobbie\",\n        \"apellido\": \"Basant\",\n        \"fecha_contratacion\": \"2022-10-15\",\n        \"fecha_nacimiento\": \"1999-11-23\",\n        \"salario\": 8001.99,\n        \"rol\": {\n            \"id\": 1,\n            \"nombre\": \"ADMIN\"\n        },\n        \"sucursal\": {\n            \"id\": 1,\n            \"nombre\": \"Sucursal Central\",\n            \"direccion\": {\n                \"id\": 1,\n                \"direccion\": \"6ta Avenida 5-10 Zona 2\",\n                \"municipio\": \"Guatemala\",\n                \"departamento\": \"Guatemala\"\n            }\n        }\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/usuario",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"usuario"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete usuario",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/api/usuario/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"usuario",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET token",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"nombre\": \"admin\",\n    \"password\": \"1234\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/login",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"login"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

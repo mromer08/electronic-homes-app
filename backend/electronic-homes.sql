@@ -113,18 +113,18 @@ CREATE TABLE ControlVentas.DetalleVenta(
     FOREIGN KEY (id_producto) REFERENCES ControlInventario.Producto (id)
 );
 
--- CREACION DE ROL ADMINISTRADOR (salir de la base de datos)
-CREATE ROLE AdminEH;
-GRANT CONNECT ON DATABASE ElectronicHomes TO AdminEH;
+-- -- CREACION DE ROL ADMINISTRADOR (salir de la base de datos)
+-- CREATE ROLE AdminEH;
+-- GRANT CONNECT ON DATABASE ElectronicHomes TO AdminEH;
 
--- DANDO PERMISOS, TRABAJANDO EN LA BASE DE DATOS
--- \c ElectronicHomes
-GRANT ALL ON SCHEMA ControlVentas, ControlInventario, ControlUsuarios, ControlPersonal, ControlSucursales, ControlClientes TO AdminEH;
+-- -- DANDO PERMISOS, TRABAJANDO EN LA BASE DE DATOS
+-- -- \c ElectronicHomes
+-- GRANT ALL ON SCHEMA ControlVentas, ControlInventario, ControlUsuarios, ControlPersonal, ControlSucursales, ControlClientes TO AdminEH;
 
-GRANT SELECT, INSERT, UPDATE, DELETE, REFERENCES ON ALL TABLES IN SCHEMA ControlVentas, ControlInventario, ControlUsuarios, ControlPersonal, ControlSucursales, ControlClientes TO AdminEH;
-CREATE USER SAminEH WITH PASSWORD 'admin1234';
--- ASIGNANDO ROL A USUARIO CREADO
-GRANT AdminEH TO SAminEH;
+-- GRANT SELECT, INSERT, UPDATE, DELETE, REFERENCES ON ALL TABLES IN SCHEMA ControlVentas, ControlInventario, ControlUsuarios, ControlPersonal, ControlSucursales, ControlClientes TO AdminEH;
+-- CREATE USER SAminEH WITH PASSWORD 'admin1234';
+-- -- ASIGNANDO ROL A USUARIO CREADO
+-- GRANT AdminEH TO SAminEH;
 
 -- Cambiar de usuario
 

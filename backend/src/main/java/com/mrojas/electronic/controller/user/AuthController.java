@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
 
+import org.apache.catalina.connector.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -24,16 +25,19 @@ public class AuthController {
     JWTUtil jwtUtil;
 
     @PostMapping("/login")
-    public String login(@RequestBody Map<String, String> usuario){
+    public Map<String, Object> login(@RequestBody Map<String, String> usuario){
         Optional<Usuario> usuarioLogueado = usuarioService.getUsuarioByCredentials(usuario);
+        Map<String, Object> response = new HashMap<>();
 
         if (usuarioLogueado.isPresent()) {
             Map<String, Object> extraClaims = new HashMap<>();
             extraClaims.put("empleado", usuarioLogueado.get().getEmpleado());
             String tokenJwt = jwtUtil.create(String.valueOf(usuarioLogueado.get().getId()), usuarioLogueado.get().getNombre(), extraClaims);
-            
-            return tokenJwt;
+            response.put("token", tokenJwt);
+            response.put("empleado", usuarioLogueado.get().getEmpleado());
+            return response;
         }
-        return "FAIL";
+        response.put("token", "FAIL");
+        return response;
     }
 }
